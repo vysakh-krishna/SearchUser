@@ -39,11 +39,12 @@ function UserList() {
 
     const api =`https://reqres.in/api/users?page=2`;
 
+    // Calls the function that gets the data of the users.
     useEffect(()=>{
         getUserList();
     }, []);
 
-
+    // Async function that gets the data from tha api given.
     const getUserList = async () => {
         try {
         const res = await axios.get(api)
@@ -53,12 +54,13 @@ function UserList() {
     }
   }
 
-
+  // Function to handle the search bar changes 
   const handleSearchUser = (event) => {
     setSearchUser(event.target.value);
   }
 
-
+  // Function that enables the data search using first_name and filter the users that matches.
+  // to do so, we  are converting the string to lowercase
   const filterUser = userData.filter((user) => 
         user.first_name.toLowerCase().includes(searchUser.toLowerCase())
     )
@@ -74,7 +76,10 @@ function UserList() {
               onChange={handleSearchUser}
           />
         </div>
-
+    {/* 
+    Map function to map alla the users that matches the search value, by default it is blank, thus it shows all the users
+    then it is passed to another component UserCard.
+    */}
         <div style={cardContainer}>
           {filterUser.map((user) =>(
               <UserCard key={user.id} user={user}/>

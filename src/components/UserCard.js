@@ -31,9 +31,12 @@ const CornerId={
     color: 'white',
     borderRadius: '20px', 
 }
+
+// Component that receives the user data from UserList component and map each user and display the user data.
 function UserCard({user}) {
   return (
     <>
+    
         <div style={outerCard} key={user.id}>  
             <div style={imageContainer}>
                 <img src={user.avatar} alt="avatar" style={image} />
